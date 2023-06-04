@@ -1,4 +1,5 @@
 require('./config/dotenv');
+require("express-async-errors");
 
 const express = require ('express');
 const {initDatabase } = require('./config/db');
@@ -8,6 +9,7 @@ const experienciasRoute = require('./routes/experienciasRoute');
 const portfolioRoute = require('./routes/portfolioRoute');
 const informacoesRoute = require('./routes/informacoesRoute');
 const authRoute = require('./routes/authRoute');
+const { stack } = require('./routes/experienciasRoute');
 const app = express();
 
 const port = process.env.APP_PORT || 5000;
@@ -26,10 +28,10 @@ app.use('/api/auth', authRoute);
 
 initDatabase();
 
-//app.use((err, req, res, next) => {
-    //console.error(err.stack);
-    //res.status(500).send('Algo está errado!');
-//});
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Algo está errado!');
+});
 
 app.listen(port, () =>{ 
     console.log(`Servidor rodando na porta ${port}`);
