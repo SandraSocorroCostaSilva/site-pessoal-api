@@ -26,7 +26,12 @@ app.use('/api/auth', authRoute);
 
 initDatabase();
 
+//app.use((err, req, res, next) => {
+    //console.error(err.stack);
+    //res.status(500).send('Algo está errado!');
+//});
+
 app.listen(port, () =>{ 
     console.log(`Servidor rodando na porta ${port}`);
-    //console.log(`HOST: ${process.env.DB_HOST}`); Mandou retitirar :1H:25 * Verificar se o Host está correto.
+    
 });

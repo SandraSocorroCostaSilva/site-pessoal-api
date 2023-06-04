@@ -1,32 +1,37 @@
-const experienciasRepository = require('../repositories/experienciasRepository')
+const experienciasRepository = require("../repositories/experienciasRepository");
 
-exports.getAllExperiencias = async (req, res) => { 
-       const tipo = req.query.tipo;
-      const experiencias = await experienciasRepository.getAllExperiencias(tipo);
-      res.json(experiencias);
-};
+exports.getAllExperiencias = async (req, res) => {   
+    const tipo = req.query.tipo;
+    const experiencias = await experienciasRepository.getAllExperiencias(tipo); 
+    res.json(experiencias);
 
-exports.getExperienciasById = async (req, res) => { 
-       const id = parseInt(req.params.id);
-       const experiencias = await experienciasRepository.getExperienciasById(id);
-       res.json(experiencias);
-};
+ };
 
-exports.createExperiencias = async (req, res) => {
-       const experiencias = req.body;
-       const newExperiencias = await experienciasRepository.createExperiencias(experiencias);
-       res.json(newExperiencias);
-}
-
-exports.updateExperiencias = async (req, res) => {
-     const id = parseInt(req.params.id);
-    const experiencias = req.body;
-    const updateExperiencias = await experienciasRepository.updateExperiencias(id,experiencias);
-    res.json(updateExperiencias);
-}
-
-exports.deleteExperiencias = async (req, res) => {
+ exports.getExperienciaById = async (req, res) => {   
     const id = parseInt(req.params.id);
-    await experienciasRepository.deleteExperiencias(id);
-   res.json({message:`Experiencias ${id}deleted`});
-}
+    const experiencias = await experienciasRepository.getExperienciaById(id); 
+    res.json(experiencias);
+
+ };
+
+ exports.createExperiencia = async (req, res) => {   
+   const experiencias = req.body;
+   const newExperiencias = await experienciasRepository.createExperiencia(experiencias); 
+   res.json(newExperiencias);
+
+};
+
+exports.updateExperiencia = async (req, res) => {   
+   const id = parseInt(req.params.id)
+   const experiencias = req.body;
+   const updateExperiencias = await experienciasRepository.updateExperiencia(id, experiencias); 
+   res.json(updateExperiencias);
+
+};
+
+exports.deleteExperiencia = async (req, res) => {   
+   const id = parseInt(req.params.id)
+   await experienciasRepository.deleteExperiencia(id); 
+   res.json({message: `Experiencias ${id} deleted`});
+
+};

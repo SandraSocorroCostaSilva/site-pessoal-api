@@ -6,11 +6,12 @@ exports.getPortfolio = async () => {
 }
 
 exports.getPortfolioById = async (id) =>{
-    const result = await pool.query( `SELECT *  FROM  portfolio WHERE id = $1`, [id]);
-     return result.rows [0];
+    const result = await pool.query( `SELECT *  FROM  portfolio WHERE id = $1 `, [id]);
+     return result.rows[0];
 } 
 
 exports.createProjeto = async (projeto) => {
+    console.log(projeto)
     const result = await pool.query(
     'INSERT INTO portfolio (title, link, image) VALUES ($1, $2, $3) RETURNING *',
      [projeto.title, projeto.link, projeto.image]
